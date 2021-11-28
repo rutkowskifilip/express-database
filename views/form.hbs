@@ -1,0 +1,111 @@
+
+
+<div>
+  <form action="/handle" method="get">
+    <h2>Dane pojazdu:</h2>
+    <table>
+      <tr><td><label for="ubez">Ubezpieczenie:</label></td><td><input
+            type="checkbox"
+            name="ubez"
+          /></td>
+      </tr>
+      <tr><td><label for="benz">Benzyna:</label></td><td><input
+            type="checkbox"
+            name="benz"
+          /></td>
+      </tr>
+      <tr><td><label for="uszk">Uszkodzony:</label></td><td><input
+            type="checkbox"
+            name="uszk"
+          /></td>
+      </tr>
+      <tr><td><label for="nap">Napęd 4x4:</label></td><td><input
+            type="checkbox"
+            name="nap"
+          /></td>
+      </tr>
+    </table>
+    <input type="submit" value="DODAJ DO BAZY" />
+  </form>
+</div>
+<div>
+  <h2>Wszystkie pojazdy:</h2>
+  <table class="list">
+    <thead>
+      <th></th>
+      <th>Ubezpieczony</th>
+      <th>Benzyna</td>
+      <th>Uszkodzony</th>
+      <th>Napęd 4x4</th>
+      <th></th>
+      <th></th>
+      </thead>
+      {{#each docs}}
+
+        <tr id={{@index}}>
+          <td>{{@index}}</td>
+           <td>{{obj.a}}</td>
+           <td>{{obj.b}}</td>
+           <td>{{obj.c}}</td>
+           <td>{{obj.d}}</td>
+           <form method="get">
+           <td><button class='delete' id='btDelete{{@index}}' name="delete" formaction="/delete" value={{_id}}>Delete</button></td>
+           </form>
+           <td><button class='edit' name="edit" onclick="edit(this.value)" value={{@index}}>Edit</button></td>
+           
+        </tr>
+    {{/each}}
+  </table>
+</div>
+
+          
+<script>
+  let previous = '';
+  let prevRow = '';
+  let prevRowId = -1
+  let y = 0;
+  
+  function edit(x){
+    console.log(y, parseInt(prevRowId))
+    if(y>=1){
+    let prevRowHTML= document.getElementById(parseInt(prevRowId));
+    console.log(previous)
+    prevRowHTML.innerHTML = previous;
+    }
+    const row = document.getElementById(x)
+    previous = row.outerHTML;
+    
+    let id = document.getElementById('btDelete'+row.id) 
+    let btUpdate = '<form method="get"><button class="update" id="btUpdate" type="submit" onclick="add()" name="update" formaction="/update" value=' + id.value +'>Update</button></form>';
+    const newRow = "<tr id={{@index}}><td>"+row.id+"</td><td><select id='sUbez' name='sUbez'><option value='TAK'>TAK</option><option value='NIE'>NIE</option></select></td><td><select id='sBenz' name='sBenz'><option value='TAK'>TAK</option><option value='NIE'>NIE</option></select></td><td><select id='sUszk' name='sUszk'><option value='TAK'>TAK</option><option value='NIE'>NIE</option></select></td><td><select  id='sNap' name='sNap'><option value='TAK'>TAK</option><option value='NIE'>NIE</option></select></td><td>"+ btUpdate +"</td><td><button class='cancel' name='cancel' onclick='cancel(this.value)' value="+ row.id + ">Cancel</button></td></tr>"
+    row.innerHTML = newRow;
+    previousRow = row
+    prevRowId = x;
+ 
+    y++;
+    console.log(y, parseInt(prevRowId))
+  }
+
+  function cancel(x){
+    const cancelRow = document.getElementById(x)
+    
+    const html = String(previous)
+    {{!-- console.log(html)
+    console.log(cancelRow) --}}
+    cancelRow.innerHTML = html;
+
+  }
+  
+  function add(){
+
+    let ubez = document.querySelector('#sUbez').value
+    let benz = document.querySelector('#sBenz').value
+    let uszk = document.querySelector('#sUszk').value
+    let nap = document.querySelector('#sNap').value
+    console.log(ubez + benz + uszk + nap)
+    document.querySelector('#btUpdate').value+= "_" + ubez +"_" + benz + "_" + uszk +"_" + nap
+  }
+
+</script>
+
+

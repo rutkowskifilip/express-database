@@ -1,0 +1,66 @@
+div {
+  float: left;
+  margin-right: 100px;
+}
+form {
+  margin: 0;
+  padding: 0;
+}
+label {
+  font-size: larger;
+  color: blue;
+}
+h2 {
+  color: gray;
+  text-decoration: underline;
+}
+input[type="checkbox"] {
+  width: 50px;
+  height: 50px;
+}
+
+input[type="submit"] {
+  width: 200px;
+  font-size: larger;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 30px;
+  color: blue;
+}
+
+td,
+th {
+  height: 50px;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+table.list td,
+th {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+button {
+  width: 80px;
+  height: 30px;
+  border: 2px solid;
+  border-radius: 5px;
+  font-size: larger;
+}
+button.update {
+  border-color: purple;
+  color: purple;
+}
+button.delete {
+  border-color: red;
+  color: red;
+}
+button.cancel {
+  border-color: grey;
+  color: grey;
+}
+button.edit {
+  border-color: green;
+  color: green;
+}
