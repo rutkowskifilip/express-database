@@ -41,7 +41,7 @@ app.get("/handle", function (req, res) {
     // //zwracam dane w postaci JSON
     // console.log("----- tablica obiektów pobrana z bazy: \n");
     data = { docs };
-    res.render("form.hbs", data);
+    res.redirect("/");
     // console.log("----- sformatowany z wcięciami obiekt JSON: \n");
   });
 });
