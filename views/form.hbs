@@ -77,6 +77,7 @@
     
     let id = document.getElementById('btDelete'+row.id) 
     let btUpdate = '<form method="get"><button class="update" id="btUpdate" type="submit" onclick="add()" name="update" formaction="/update" value=' + id.value +'>Update</button></form>';
+    const newRow = "<tr id={{@index}}><td>"+row.id+"</td><td><select id='sUbez' name='sUbez'><option value='TAK'>TAK</option><option value='NIE'>NIE</option><option value='BRAK DANYCH'>BRAK DANYCH</option></select></td><td><select id='sBenz' name='sBenz'><option value='TAK'>TAK</option><option value='NIE'>NIE</option><option value='BRAK DANYCH'>BRAK DANYCH</option></select></td><td><select id='sUszk' name='sUszk'><option value='TAK'>TAK</option><option value='NIE'>NIE</option><option value='BRAK DANYCH'>BRAK DANYCH</option></select></td><td><select  id='sNap' name='sNap'><option value='TAK'>TAK</option><option value='NIE'>NIE</option><option value='BRAK DANYCH'>BRAK DANYCH</option></select></td><td>"+ btUpdate +"</td><td><button class='cancel' name='cancel' onclick='cancel(this.value)' value="+ row.id + ">Cancel</button></td></tr>"
     row.innerHTML = newRow;
     previousRow = row
     prevRowId = x;
